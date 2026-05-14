@@ -1,0 +1,4 @@
+AccountID,AccountNumber,AccountName,CustomerID,AccountTypeID,CurrencyCode,Status,OpenDate,CloseDate,Balance
+1,ACC-10001,Juan Savings,1,1,PHP,Active,2024-01-01,,5000.0
+2,ACC-10002,Maria Current,2,2,PHP,Active,2024-02-15,,15000.0
+3,ACC-10003,Jose Savings,3,1,PHP,Suspended,2024-03-10,,2500.0
