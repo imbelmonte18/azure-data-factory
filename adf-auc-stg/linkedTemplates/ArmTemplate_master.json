@@ -1,0 +1,146 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-auc-stg"
+		},
+		"ls_bronze_to_silver_stg_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_bronze_to_silver_stg'"
+		},
+		"ls_logs_stg_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_logs_stg'"
+		},
+		"ls_sqlserver_alf_stg_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_sqlserver_alf_stg'"
+		},
+		"ls_sqlserver_etlmetadatadb_stg_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_sqlserver_etlmetadatadb_stg'"
+		},
+		"ls_bronze_to_silver_stg_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://aucstgeastuslandingst.dfs.core.windows.net/"
+		},
+		"ls_httpservice_github_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com/"
+		},
+		"ls_kv_alf_stg_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://kv-alf-stg.vault.azure.net/"
+		},
+		"ls_logs_stg_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://aucstgeastuslogst.dfs.core.windows.net/"
+		},
+		"ls_sqlserver_etlmetadatadb_stg_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "@{linkedService().p_server}"
+		},
+		"ls_sqlserver_etlmetadatadb_stg_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().p_database}"
+		},
+		"ls_sqlserver_etlmetadatadb_stg_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "imbelmonte"
+		},
+		"tg_autodeletedetect_delete_files_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/58a6506f-990a-4d15-8e49-64ea5a6a56af/resourceGroups/rg-etl-stg-east/providers/Microsoft.Storage/storageAccounts/aucstgeastuslandingst"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-auc-stg_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_bronze_to_silver_stg_accountKey": {
+						"value": "[parameters('ls_bronze_to_silver_stg_accountKey')]"
+					},
+					"ls_logs_stg_accountKey": {
+						"value": "[parameters('ls_logs_stg_accountKey')]"
+					},
+					"ls_bronze_to_silver_stg_properties_typeProperties_url": {
+						"value": "[parameters('ls_bronze_to_silver_stg_properties_typeProperties_url')]"
+					},
+					"ls_httpservice_github_properties_typeProperties_url": {
+						"value": "[parameters('ls_httpservice_github_properties_typeProperties_url')]"
+					},
+					"ls_kv_alf_stg_properties_typeProperties_baseUrl": {
+						"value": "[parameters('ls_kv_alf_stg_properties_typeProperties_baseUrl')]"
+					},
+					"ls_logs_stg_properties_typeProperties_url": {
+						"value": "[parameters('ls_logs_stg_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adf-auc-stg_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_sqlserver_alf_stg_connectionString": {
+						"value": "[parameters('ls_sqlserver_alf_stg_connectionString')]"
+					},
+					"ls_sqlserver_etlmetadatadb_stg_password": {
+						"value": "[parameters('ls_sqlserver_etlmetadatadb_stg_password')]"
+					},
+					"ls_sqlserver_etlmetadatadb_stg_properties_typeProperties_server": {
+						"value": "[parameters('ls_sqlserver_etlmetadatadb_stg_properties_typeProperties_server')]"
+					},
+					"ls_sqlserver_etlmetadatadb_stg_properties_typeProperties_database": {
+						"value": "[parameters('ls_sqlserver_etlmetadatadb_stg_properties_typeProperties_database')]"
+					},
+					"ls_sqlserver_etlmetadatadb_stg_properties_typeProperties_userName": {
+						"value": "[parameters('ls_sqlserver_etlmetadatadb_stg_properties_typeProperties_userName')]"
+					},
+					"tg_autodeletedetect_delete_files_properties_typeProperties_scope": {
+						"value": "[parameters('tg_autodeletedetect_delete_files_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-auc-stg_ArmTemplate_0')]"
+			]
+		}
+	]
+}

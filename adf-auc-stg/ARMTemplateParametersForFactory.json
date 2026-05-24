@@ -1,0 +1,45 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-auc-stg"
+		},
+		"ls_bronze_to_silver_stg_accountKey": {
+			"value": ""
+		},
+		"ls_logs_stg_accountKey": {
+			"value": ""
+		},
+		"ls_sqlserver_alf_stg_connectionString": {
+			"value": ""
+		},
+		"ls_sqlserver_etlmetadatadb_stg_password": {
+			"value": ""
+		},
+		"ls_bronze_to_silver_stg_properties_typeProperties_url": {
+			"value": "https://aucstgeastuslandingst.dfs.core.windows.net/"
+		},
+		"ls_httpservice_github_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/"
+		},
+		"ls_kv_alf_stg_properties_typeProperties_baseUrl": {
+			"value": "https://kv-alf-stg.vault.azure.net/"
+		},
+		"ls_logs_stg_properties_typeProperties_url": {
+			"value": "https://aucstgeastuslogst.dfs.core.windows.net/"
+		},
+		"ls_sqlserver_etlmetadatadb_stg_properties_typeProperties_server": {
+			"value": "@{linkedService().p_server}"
+		},
+		"ls_sqlserver_etlmetadatadb_stg_properties_typeProperties_database": {
+			"value": "@{linkedService().p_database}"
+		},
+		"ls_sqlserver_etlmetadatadb_stg_properties_typeProperties_userName": {
+			"value": "imbelmonte"
+		},
+		"tg_autodeletedetect_delete_files_properties_typeProperties_scope": {
+			"value": "/subscriptions/58a6506f-990a-4d15-8e49-64ea5a6a56af/resourceGroups/rg-etl-stg-east/providers/Microsoft.Storage/storageAccounts/aucstgeastuslandingst"
+		}
+	}
+}
