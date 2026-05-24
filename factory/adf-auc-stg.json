@@ -1,0 +1,15 @@
+{
+	"name": "adf-auc-stg",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Enabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2b72a262-55ee-495c-a7e1-2ab2726fce36",
+		"tenantId": "29873050-252f-4633-b9bd-f6e28b1c4d2f"
+	}
+}

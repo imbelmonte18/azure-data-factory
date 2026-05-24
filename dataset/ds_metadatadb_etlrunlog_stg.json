@@ -1,0 +1,64 @@
+{
+	"name": "ds_metadatadb_etlrunlog_stg",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sqlserver_etlmetadatadb_stg",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"p_server": "LAPTOP-R4PNR1VP\\SQLSERVER2008R2",
+				"p_database": "ETLMetadataDB"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "RunLogId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PipelineName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SourceFile",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TargetTable",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RowsCopied",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StartTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "EndTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ErrorMessage",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "log",
+			"table": "ETL_RunLog"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,6 @@
+{
+	"name": "ir-shir-sqlserver-alf-stg",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

@@ -1,0 +1,99 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_reporting",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_credit1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_credit3",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "selectcols"
+				},
+				{
+					"name": "filterrows"
+				},
+				{
+					"name": "split1"
+				},
+				{
+					"name": "sort1"
+				},
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          TransactionKey as short,",
+				"          AccountKey as short,",
+				"          CustomerKey as short,",
+				"          DateKey as date,",
+				"          AccountTypeKey as short,",
+				"          TransactionType as string,",
+				"          Amount as short,",
+				"          BalanceAfterTransaction as short,",
+				"          ReferenceNumber as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 select(mapColumn(",
+				"          TransactionKey,",
+				"          TransactionType,",
+				"          Amount,",
+				"          BalanceAfterTransaction,",
+				"          AccountKey",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectcols",
+				"selectcols filter(TransactionType=='Credit') ~> filterrows",
+				"filterrows split(AccountKey==1,",
+				"     AccountKey==2,",
+				"     disjoint: false) ~> split1@(credit1, credit2, credit3)",
+				"split1@credit1 sort(desc(Amount, true)) ~> sort1",
+				"sort1 derive(Amount = coalesce(Amount,0)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['credit1.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1",
+				"split1@credit3 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['credit3.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink2"
+			]
+		}
+	}
+}

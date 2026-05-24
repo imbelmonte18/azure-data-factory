@@ -1,0 +1,23 @@
+{
+	"name": "pr_source_github",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_httpservice_github",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "imbelmonte18/azure-data-factory/main/FactAccountTransactions.csv"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,24 @@
+{
+	"name": "tg_autodeletedetect_delete_files",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_transfer_completed",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/reporting/blobs/ready to upload/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/58a6506f-990a-4d15-8e49-64ea5a6a56af/resourceGroups/rg-etl-stg-east/providers/Microsoft.Storage/storageAccounts/aucstgeastuslandingst",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

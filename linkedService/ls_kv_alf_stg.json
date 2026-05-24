@@ -1,0 +1,11 @@
+{
+	"name": "ls_kv_alf_stg",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://kv-alf-stg.vault.azure.net/"
+		}
+	}
+}

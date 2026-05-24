@@ -1,0 +1,24 @@
+{
+	"name": "ls_sqlserver_alf_stg",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"p_server": {
+				"type": "string"
+			},
+			"p_database": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=@{linkedService().p_server};initial catalog=@{linkedService().p_database};user id=imbelmonte",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI1YmRjOGJiZS1kNmMxLTQ2ZWUtOTk2NS03YmVkMDM4NTM3YjUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-shir-sqlserver-alf-stg",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

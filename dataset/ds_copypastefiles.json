@@ -1,0 +1,32 @@
+{
+	"name": "ds_copypastefiles",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_bronze_to_silver_stg",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_copypastfile": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().p_copypastfile",
+					"type": "Expression"
+				},
+				"fileSystem": "reporting"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

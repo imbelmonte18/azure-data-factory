@@ -1,0 +1,29 @@
+{
+	"name": "ls_sqlserver_etlmetadatadb_stg",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"p_server": {
+				"type": "string"
+			},
+			"p_database": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "@{linkedService().p_server}",
+			"database": "@{linkedService().p_database}",
+			"encrypt": "optional",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "imbelmonte",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJmMWU1YTA2My0zNjI2LTQyMjQtYTRjNS03MTY5NTNjYWEyZDQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-shir-sqlserver-alf-stg",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

@@ -1,0 +1,94 @@
+{
+	"name": "pl_insert_ETL_RunLog",
+	"properties": {
+		"activities": [
+			{
+				"name": "Stored procedure1",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[log].[InsertETLRunLog]",
+					"storedProcedureParameters": {
+						"PipelineName": {
+							"value": {
+								"value": "@pipeline().Pipeline",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"SourceFile": {
+							"value": {
+								"value": "@variables('Sourcefile')",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"TargetTable": {
+							"value": {
+								"value": "@variables('TargetTable')",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"Status": {
+							"value": {
+								"value": "@variables('Status')",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"RowsCopied": {
+							"value": "10",
+							"type": "Int32"
+						},
+						"StartTime": {
+							"value": null,
+							"type": "Datetime"
+						},
+						"Endtime": {
+							"value": null,
+							"type": "Datetime"
+						},
+						"ErrorMessage": {
+							"value": "test error message",
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_sqlserver_etlmetadatadb_stg",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"p_server": "LAPTOP-R4PNR1VP\\SQLSERVER2008R2",
+						"p_database": "ETLMetadataDB"
+					}
+				}
+			}
+		],
+		"variables": {
+			"Sourcefile": {
+				"type": "String",
+				"defaultValue": "samplesourcefile"
+			},
+			"TargetTable": {
+				"type": "String",
+				"defaultValue": "ETL_RunLog"
+			},
+			"Status": {
+				"type": "String",
+				"defaultValue": "active"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-05-11T12:50:43Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
