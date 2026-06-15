@@ -1,0 +1,25 @@
+{
+	"name": "AzureDataLake_DelimitedText1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LinkedServiceDL_AzureDataLakeStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "AZL_Csvdelimited2.txt",
+				"folderPath": "csvfiles",
+				"fileSystem": "destinationcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

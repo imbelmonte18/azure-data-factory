@@ -1,0 +1,17 @@
+{
+	"name": "storeproceduremetadata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerParameters",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"server": "LAPTOP-R4PNR1VP\\SQLSERVER2008R2",
+				"dbname": "es"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

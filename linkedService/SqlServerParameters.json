@@ -1,0 +1,31 @@
+{
+	"name": "SqlServerParameters",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"server": {
+				"type": "string",
+				"defaultValue": "LAPTOP-R4PNR1VP\\SQLSERVER2008R2"
+			},
+			"dbname": {
+				"type": "string",
+				"defaultValue": "es"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "@{linkedService().server}",
+			"database": "@{linkedService().dbname}",
+			"encrypt": "optional",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "imbelmonte",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3NzRiY2ZjNC01N2I3LTQzYjktOTU3ZS1jYmY2YmM0MGFhN2IiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "selfhostedonprem",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

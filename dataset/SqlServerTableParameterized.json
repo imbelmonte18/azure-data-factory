@@ -1,0 +1,52 @@
+{
+	"name": "SqlServerTableParameterized",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerParameters",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"server": "LAPTOP-R4PNR1VP\\SQLSERVER2008R2",
+				"dbname": "ReportServer$SQLSERVER2008R2"
+			}
+		},
+		"parameters": {
+			"tablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "UserID",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "Sid",
+				"type": "varbinary"
+			},
+			{
+				"name": "UserType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AuthType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UserName",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().tablename",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

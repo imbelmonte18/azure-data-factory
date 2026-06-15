@@ -1,0 +1,20 @@
+{
+	"name": "destinationazuresql_tblstudentdata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linkservice_sqlazuredatabasedestination",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Students DataSet"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "TblStudents"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
